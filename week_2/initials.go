@@ -40,6 +40,7 @@ func initials(s string) {
 			continue
 		} else if seperator {
 			if lowercase {
+				//Didn't use helper function from strings
 				letter -= 32
 				fmt.Print(string(letter))
 				seperator = false
