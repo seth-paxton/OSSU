@@ -66,13 +66,9 @@ func args() (int, error) {
 	return offset, nil
 }
 
+//cipher scrambles the message based on the offset provided by the user
 func cipher(plaintext string, key int) string {
-	/*
-		Your program must output ciphertext: (without a newline) followed by the plaintext’s corresponding ciphertext, with each alphabetical character in the plaintext
-		"rotated" by k positions; non-alphabetical characters should be outputted unchanged.
-		Your program must preserve case: capitalized letters, though rotated, must remain capitalized letters; lowercase letters, though rotated, must remain lowercase letters.
-		After outputting ciphertext, you should print a newline. Your program should then exit by returning 0 from main.
-	*/
+
 	cipherText := ""
 
 	for _, letter := range plaintext {
@@ -85,13 +81,14 @@ func cipher(plaintext string, key int) string {
 		asciiA = 65
 
 		if lowercase {
+			//get letter location in alphabet
 			offset := (letter - asciia + rune(key)) % 26
 			cipherText += string(offset + asciia)
 		} else if uppercase {
 			offset := (letter - asciiA + rune(key)) % 26
 			cipherText += string(offset + asciiA)
 		} else {
-			//return any character as is.
+			//return any non alphabetical character
 			cipherText += string(letter)
 		}
 	}
